@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { CribCardComponent } from './crib-card/crib-card.component';
 import { CribListingComponent } from './crib-listing/crib-listing.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { CribsService } from './services/cribs.service';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     AppRoutingModule,
     NgbModule.forRoot()
   ],
-  providers: [],
+  providers: [CribsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
