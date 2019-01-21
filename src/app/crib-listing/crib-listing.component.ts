@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { cribs } from './../data/cribs';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { Crib } from '../crib';
+import { Http } from '@angular/http';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-crib-listing',
@@ -9,15 +10,23 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 })
 export class CribListingComponent implements OnInit {
 
-  cribs: Array<any> = cribs;
+  cribs: Array<any>;
+  error: string;
+  
+  constructor(private http: Http) {
 
-  imports:[
-    NgbModule
-  ]
-
-  constructor() { }
+   }
 
   ngOnInit() {
+    // this.http.get('data/cribs.json')
+    // .pipe(map(res => res.json()))
+    // .subscribe(data => this.cribs = data);
+    this.http.get('data/cribs.json')
+    .pipe(map(res => res.json()))
+    .subscribe(
+      data => this.cribs = data,
+      error => this.error = error.statusText
+      );
   }
 
 }
